@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a0f1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Our Story ❤️</title>
 
 <style>
@@ -15,6 +18,8 @@ body{
   overflow-x:hidden;
   background:#0a0f1a;
   color:white;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
 }
 
 /* ===== Floating Hearts ===== */
@@ -182,6 +187,62 @@ section{
   .card{padding:16px}
   #dynamicText{font-size:1.1rem}
   #quotes{font-size:1.4rem}
+  
+  /* Better touch targets */
+  .btn{
+    min-height:48px;
+    min-width:120px;
+    padding:14px 28px;
+    font-size:1rem;
+  }
+  
+  /* Cards stack better on mobile */
+  .cards{
+    grid-template-columns:1fr;
+    gap:12px;
+    padding:10px;
+  }
+  
+  /* VCard adjustments */
+  .vcard{
+    padding:20px;
+    margin:10px;
+    width:calc(100% - 20px);
+  }
+  
+  /* Section padding for safe areas */
+  section{
+    padding:16px;
+    padding-top:max(16px,env(safe-area-inset-top));
+    padding-bottom:max(16px,env(safe-area-inset-bottom));
+  }
+  
+  /* Headings */
+  .vcard h1{
+    font-size:1.6rem;
+  }
+  
+  /* Card headings */
+  .card h2{
+    font-size:1.3rem;
+  }
+  
+  /* Card paragraphs */
+  .card p{
+    font-size:0.95rem;
+    line-height:1.5;
+  }
+}
+
+/* ===== EXTRA SMALL SCREENS ===== */
+@media(max-width:380px){
+  #anniversary h1{font-size:1.8rem}
+  #dynamicText{font-size:1rem}
+  #quotes{font-size:1.2rem}
+  .btn{
+    padding:12px 24px;
+    font-size:0.9rem;
+  }
 }
 </style>
 </head>
