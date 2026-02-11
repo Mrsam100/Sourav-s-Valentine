@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@500;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
+  background:#0a0f1a;
+  color:white;
+}
+
+/* ===== Floating Hearts ===== */
+#hearts-container{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+.floating-heart{
+  position:absolute;
+  bottom:-40px;
+  animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+  to{
+    transform:translateY(-120vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/* ===== Sections ===== */
+section{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px 14px;
+}
+
+/* ===== Anniversary Front ===== */
+#anniversary h1{
+  font-family:'Playfair Display';
+  font-size:2.6rem;
+  margin-bottom:8px;
+  color:#ffb3c6;
+}
+
+#anniversary .date{
+  color:#ffd166;
+  margin-bottom:12px;
+}
+
+/* ===== DYNAMIC TEXT ===== */
+#dynamicText{
+  min-height:70px;
+  font-size:1.2rem;
+  color:#ffb3c6;
+  margin-bottom:8px;
+  padding:0 10px;
+}
+
+#quotes{
+  font-family:'Dancing Script';
+  font-size:1.6rem;
+  color:#ffd166;
+  height:36px;
+}
+
+/* ===== CARDS + GLASS ANIMATION ===== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:14px;
+  max-width:1100px;
+}
+
+.card{
+  background:rgba(255,255,255,.08);
+  padding:20px;
+  border-radius:18px;
+  backdrop-filter:blur(10px);
+  transition:.4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.25),
+    transparent
+  );
+  transform:translateX(-100%);
+}
+
+.card:hover::before{
+  animation:shine 1.2s;
+}
+
+@keyframes shine{
+  to{transform:translateX(100%)}
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 20px rgba(255,20,147,.3);
+}
+
+/* ===== Buttons ===== */
+.btn{
+  margin-top:20px;
+  padding:12px 32px;
+  border:none;
+  border-radius:40px;
+  background:#ff1493;
+  color:white;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* ===== Valentine Steps ===== */
+.step{display:none}
+.step.active{display:flex}
+
+.vcard{
+  background:white;
+  color:black;
+  padding:26px;
+  border-radius:20px;
+  max-width:520px;
+}
+
+/* ===== Celebration ===== */
+#celebrate{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:100;
+}
+
+.big-heart{
+  font-size:100px;
+  animation:popHeart 1.2s ease infinite;
+  filter:drop-shadow(0 0 20px #ff1493);
+}
+
+@keyframes popHeart{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.3)}
+  100%{transform:scale(1)}
+}
+
+#confetti{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+  #anniversary h1{font-size:2.1rem}
+  .big-heart{font-size:80px}
+  .card{padding:16px}
+  #dynamicText{font-size:1.1rem}
+  #quotes{font-size:1.4rem}
+}
+</style>
+</head>
+
+<body>
+
+<div id="hearts-container"></div>
+<canvas id="confetti"></canvas>
+
+<section id="anniversary">
+
+<h1>Sourav ❤️ Komal</h1>
+
+<div class="date">12 February 2024 — 12 February 2026</div>
+
+<div id="dynamicText"></div>
+<div id="quotes"></div>
+
+<div class="cards">
+
+<div class="card">
+<h2>What We Were</h2>
+<p>Two hearts meeting without planning.<br>
+Laughing like kids, loving without limits.</p>
+</div>
+
+<div class="card">
+<h2>What We Are</h2>
+<p>Silent. Distant. Unspoken.<br>
+Yet feelings still breathe.</p>
+</div>
+
+<div class="card">
+<h2>What I Feel</h2>
+<p>My heart still types your name.<br>
+Some love only waits.</p>
+</div>
+
+</div>
+
+<button class="btn" onclick="startValentine()">
+Open Something Special
+</button>
+
+</section>
+
+<section id="v1" class="step">
+<div class="vcard">
+<h1>Hey Princess...</h1>
+<button class="btn" onclick="go(2)">Click Me</button>
+</div>
+</section>
+
+<section id="v2" class="step">
+<div class="vcard">
+<h1>You make my world beautiful...</h1>
+<button class="btn" onclick="go(3)">Click Me</button>
+</div>
+</section>
+
+<section id="v3" class="step">
+<div class="vcard">
+<h1>So I have a question...</h1>
+<button class="btn" onclick="go(4)">Click Me</button>
+</div>
+</section>
+
+<section id="v4" class="step">
+<div class="vcard">
+<h1>Will you be my Valentine? ❤️</h1>
+<button class="btn" onclick="saidYes()">YES!</button>
+</div>
+</section>
+
+<div id="celebrate">
+<div style="text-align:center">
+<div class="big-heart">❤️</div>
+
+<h1 style="font-family:'Dancing Script';color:white">
+She Said YES!
+</h1>
+
+<button class="btn" onclick="backHome()">
+Back to Our Story
+</button>
+</div>
+</div>
+
+<script>
+// ===== Dynamic Text =====
+const lines=[
+"We may not talk today...",
+"But love remembers everything...",
+"Some bonds live beyond silence...",
+"Distance never beats real feelings..."
+];
+
+let a=0,b=0,t="";
+
+function typeText(){
+const box=document.getElementById("dynamicText");
+
+if(a<lines.length){
+ if(b<lines[a].length){
+   t+=lines[a][b++];
+   box.innerHTML=t;
+   setTimeout(typeText,60);
+ }else{
+   setTimeout(()=>{t="";b=0;a++;typeText();},1600);
+ }
+}else{a=0;typeText();}
+}
+typeText();
+
+const q=[
+"Your smile heals me ✨",
+"Cutest girl alive 🌸",
+"My safe place 🥹",
+"Queen of my heart 👑"
+];
+
+setInterval(()=>{
+ document.getElementById("quotes").innerHTML=
+ q[Math.floor(Math.random()*q.length)];
+},2400);
+
+// ===== NAVIGATION =====
+function startValentine(){
+ document.getElementById("anniversary").style.display="none";
+ document.getElementById("v1").classList.add("active");
+}
+
+function go(n){
+ document.querySelector(".step.active").classList.remove("active");
+ document.getElementById("v"+n).classList.add("active");
+}
+
+// ===== CELEBRATION FIXED =====
+function saidYes(){
+ document.getElementById("celebrate").style.display="flex";
+ startConfetti();
+
+ // hearts burst
+ for(let i=0;i<60;i++){
+   setTimeout(()=>{
+     const h=document.createElement("div");
+     h.className="floating-heart";
+     h.innerHTML="❤️";
+     h.style.left=Math.random()*100+"%";
+     h.style.animationDuration=3+Math.random()*3+"s";
+     document.getElementById("hearts-container").appendChild(h);
+   },i*40);
+ }
+}
+
+function backHome(){
+ document.getElementById("celebrate").style.display="none";
+ document.getElementById("anniversary").style.display="flex";
+}
+
+// ===== Hearts =====
+setInterval(()=>{
+ const h=document.createElement("div");
+ h.className="floating-heart";
+ h.innerHTML="❤️";
+ h.style.left=Math.random()*100+"%";
+ h.style.animationDuration=4+Math.random()*4+"s";
+ document.getElementById("hearts-container").appendChild(h);
+
+ setTimeout(()=>h.remove(),8000);
+},300);
+
+// ===== Confetti =====
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+ canvas.width=window.innerWidth;
+ canvas.height=window.innerHeight;
+}
+resize();
+window.onresize=resize;
+
+let pieces=[];
+
+function startConfetti(){
+ pieces=[];
+ for(let i=0;i<200;i++){
+ pieces.push({
+ x:Math.random()*canvas.width,
+ y:Math.random()*-canvas.height,
+ c:["#ff1493","#ff69b4","#ffd166","#fff"][Math.floor(Math.random()*4)],
+ s:Math.random()*3+2
+ });
+ }
+ requestAnimationFrame(update);
+}
+
+function update(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ pieces.forEach(p=>{
+ p.y+=p.s;
+ ctx.fillStyle=p.c;
+ ctx.fillRect(p.x,p.y,6,6);
+
+ if(p.y>canvas.height) p.y=-10;
+ });
+
+ requestAnimationFrame(update);
+}
+</script>
+
+</body>
+</html>
